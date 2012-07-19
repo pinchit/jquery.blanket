@@ -1,0 +1,20 @@
+.noscroll { overflow: hidden !important; }
+
+.blanket-wrap {
+  position: fixed;
+  z-index: 1000;
+  background-color: rgba(255,255,255,0.75);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  overflow-y: scroll;
+}
+
+.blanket-content {
+  width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px;
+}
