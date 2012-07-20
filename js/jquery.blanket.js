@@ -85,6 +85,8 @@
       blanket.__super__.constructor.call(this, this.element, options);
       this.options = options;
       this.body = $('body');
+      this.content = this._createContent(this.element);
+      this.wrap = this._createWrap(this.content);
       this._wireCloseLinks();
       if (options.openOnInit) {
         this.open();
@@ -102,7 +104,14 @@
     };
 
     blanket.prototype._wireCloseLinks = function() {
-      return this.element.find(this.options.closeElement).on('click', this.close);
+      var _this = this;
+      this.element.find(this.options.closeElement).on('click', this.close);
+      return this.wrap.on('click', function(e) {
+        if (e.target !== _this.wrap[0]) {
+          return;
+        }
+        return _this.close();
+      });
     };
 
     blanket.prototype._disableParentScroll = function() {
@@ -129,9 +138,6 @@
     };
 
     blanket.prototype._attach = function(element) {
-      this.content = this._createContent(element);
-      this.wrap = this._createWrap(this.content);
-      $('body').append(this.veil);
       return $('body').append(this.wrap);
     };
 

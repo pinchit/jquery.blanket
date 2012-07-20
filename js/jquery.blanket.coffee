@@ -46,6 +46,9 @@ class blanket extends jQueryPlugIn
     # cache body
     @body = $('body')
 
+    @content = @_createContent @element
+    @wrap = @_createWrap @content
+
     @_wireCloseLinks()
 
     # auto-open if option is specified
@@ -63,6 +66,9 @@ class blanket extends jQueryPlugIn
 
   _wireCloseLinks: ->
     @element.find(@options.closeElement).on 'click', @close
+    @wrap.on 'click', (e) =>
+      return if e.target != @wrap[0]
+      @close()
 
   _disableParentScroll: ->
     @body.addClass 'noscroll'
@@ -83,14 +89,9 @@ class blanket extends jQueryPlugIn
       html: element
     })
 
-  _attach: (element) ->
-    @content = @_createContent element
-    @wrap = @_createWrap @content
-    $('body').append @veil
-    $('body').append @wrap
+  _attach: (element) -> $('body').append @wrap
 
-  _remove: (element) ->
-    @wrap.remove()
+  _remove: (element) -> @wrap.remove()
 
 ###############################################################################
 # install plugin
