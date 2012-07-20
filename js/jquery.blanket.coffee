@@ -32,7 +32,7 @@ class jQueryPlugIn
 
 ###############################################################################
 
-class blanket extends jQueryPlugIn
+class Blanket extends jQueryPlugIn
 
   @defaultOptions:
     openOnInit    : false
@@ -96,4 +96,4 @@ class blanket extends jQueryPlugIn
 ###############################################################################
 # install plugin
 
-blanket.installAsjQueryPlugIn()
+Blanket.installAsjQueryPlugIn()
